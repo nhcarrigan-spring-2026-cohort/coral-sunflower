@@ -1,0 +1,23 @@
+{
+  "name": "community-garden-plot-manager",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "test": "turbo run test"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "2.3.13",
+    "typescript": "5.9.3",
+    "turbo": "2.8.1"
+  },
+  "packageManager": "npm@11.6.2"
+}

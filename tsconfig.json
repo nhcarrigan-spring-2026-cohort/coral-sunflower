@@ -1,12 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true
-  },
   "compileOnSave": false,
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "files": [],
   "references": []
 }

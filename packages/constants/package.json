@@ -1,28 +1,19 @@
 {
-  "name": "backend",
+  "name": "@repo/constants",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "imports": {
-    "#*": "./src/*"
-  },
   "scripts": {
-    "dev": "tsx watch src/server/main.ts",
-    "start": "node dist/server/main.js",
-    "build": "tsc -b",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "lint:fix": "biome check --fix ."
   },
+  "exports": {
+    "./*": "./src/*.ts"
+  },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^25.2.0",
-    "tsx": "^4.21.0",
     "typescript": "5.9.3"
-  },
-  "dependencies": {
-    "express": "^5.2.1",
-    "@repo/types": "*",
-    "@repo/constants": "*"
   }
 }

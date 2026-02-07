@@ -21,8 +21,8 @@
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "express": "^5.2.1",
+    "@repo/constants": "*",
     "@repo/types": "*",
-    "@repo/constants": "*"
+    "express": "^5.2.1"
   }
 }

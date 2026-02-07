@@ -1,6 +1,6 @@
+import { HELLO } from "@repo/constants/response";
+import type { Hello } from "@repo/types/response";
 import express from "express";
-import {type Hello} from "@repo/types/response";
-import {HELLO} from "@repo/constants/response";
 
 const app = express();
 

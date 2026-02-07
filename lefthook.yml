@@ -1,0 +1,21 @@
+#   Refer for explanation to following link:
+#   https://lefthook.dev/configuration/
+
+pre-commit:
+  parallel: true
+  commands:
+    typecheck:
+      run: npm run typecheck
+      glob: "**/*.{ts,tsx}"
+    lint:fix:
+      run: npm run lint:fix
+      stage_fixed: true
+
+pre-push:
+  parallel: true
+  commands:
+    typecheck:
+      run: npm run typecheck
+      glob: "**/*.{ts,tsx}"
+    lint:
+      run: npm run lint

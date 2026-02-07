@@ -23,6 +23,7 @@ out/
 .nuxt/
 .cache/
 .parcel-cache/
+tsconfig.tsbuildinfo
 
 # IDE
 .vscode/

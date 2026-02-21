@@ -1,0 +1,17 @@
+#include:
+#  - supabase-self-hosted/docker-compose.yml
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+    ports:
+      - "127.0.0.1:5173:5173"
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    ports:
+      - "127.0.0.1:3000:3000"

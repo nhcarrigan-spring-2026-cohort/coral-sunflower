@@ -1,3 +1,6 @@
+#include:
+#  - supabase-self-hosted/docker-compose.yml
+
 services:
   frontend:
     build:
@@ -12,15 +15,3 @@ services:
       dockerfile: apps/backend/Dockerfile
     ports:
       - "127.0.0.1:3000:3000"
-
-  db:
-    image: postgres:18-alpine
-    environment:
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:

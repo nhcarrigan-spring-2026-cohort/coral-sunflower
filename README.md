@@ -13,6 +13,10 @@ Repository for Team Coral Sunflower - Spring 2026 Cohort
 1. `npm install`
 2. `npm run dev`
 
+### Docker
+
+1. `docker compose up`
+
 ### Devbox with Nix
 
 1. `devbox shell`
@@ -25,3 +29,7 @@ Repository for Team Coral Sunflower - Spring 2026 Cohort
 Generally, use `turbo run <SCRIPT_NAME> --filter=<PACKAGE_NAME>` to run any arbitrary script for a specific app.
 
 Look in the `package.json` of each package to see the available scripts or use `turbo run --filter=<PACKAGE_NAME>` to list all the available scripts for a specific app.
+
+### Running Supabase
+
+1. `npx supabase start`

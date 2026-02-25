@@ -1,0 +1,106 @@
+
+> frontend@0.0.0 lint
+> biome check .
+
+src/main.tsx:6:21 lint/style/noNonNullAssertion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Forbidden non-null assertion.
+  
+    4 │ import App from "./App";
+    5 │ 
+  > 6 │ ReactDOM.createRoot(document.getElementById("root")!).render(
+      │                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    7 │   <React.StrictMode>
+    8 │     <BrowserRouter>
+  
+
+src/App.tsx:32:11 lint/a11y/useButtonType ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Provide an explicit type prop for the button element.
+  
+    30 │         >
+    31 │           <h1 style={{ margin: 0, color: "#1a202c" }}>Community Garden</h1>
+  > 32 │           <button
+       │           ^^^^^^^
+  > 33 │             onClick={() => setIsAdmin(!isAdmin)}
+        ...
+  > 41 │             }}
+  > 42 │           >
+       │           ^
+    43 │             Switch to {isAdmin ? "User View" : "Admin View"}
+    44 │           </button>
+  
+  i The default type of a button is submit, which causes the submission of a form when placed inside a `form` element. This is likely not the behaviour that you want inside a React application.
+  
+  i Allowed button types are: submit, button or reset
+  
+
+src/features/announcements/components/AnnouncementForm.tsx:80:11 lint/a11y/noLabelWithoutControl ━━━━━━━━━━
+
+  × A form label must be associated with an input.
+  
+    78 │       <form onSubmit={handleSubmit}>
+    79 │         <div style={{ marginBottom: "10px" }}>
+  > 80 │           <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Title</label>
+       │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    81 │           <input
+    82 │             type="text"
+  
+  i Consider adding a `for` or `htmlFor` attribute to the label element or moving the input element to inside the label element.
+  
+
+src/features/announcements/components/AnnouncementForm.tsx:97:11 lint/a11y/noLabelWithoutControl ━━━━━━━━━━
+
+  × A form label must be associated with an input.
+  
+    96 │         <div style={{ marginBottom: "10px" }}>
+  > 97 │           <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>Content (Rich Text)</label>
+       │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    98 │           <RichTextEditor value={content} onChange={setContent} placeholder="Write your announcement here..." />
+    99 │         </div>
+  
+  i Consider adding a `for` or `htmlFor` attribute to the label element or moving the input element to inside the label element.
+  
+
+src/features/announcements/components/AnnouncementForm.tsx:102:11 lint/a11y/noLabelWithoutControl ━━━━━━━━━━
+
+  × A form label must be associated with an input.
+  
+    101 │         <div style={{ marginBottom: "15px" }}>
+  > 102 │           <label style={{ display: "block", marginBottom: "5px" }}>Expiration Date (Optional)</label>
+        │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    103 │           <input
+    104 │             type="date"
+  
+  i Consider adding a `for` or `htmlFor` attribute to the label element or moving the input element to inside the label element.
+  
+
+src/features/announcements/components/AnnouncementList.tsx:46:40 lint/security/noDangerouslySetInnerHtml ━━━━━━━━━━
+
+  × Avoid passing content using the dangerouslySetInnerHTML prop.
+  
+    44 │               )}
+    45 │             </div>
+  > 46 │             <div style={{ margin: 0 }} dangerouslySetInnerHTML={{ __html: item.content }} />
+       │                                        ^^^^^^^^^^^^^^^^^^^^^^^
+    47 │           </div>
+    48 │         ))}
+  
+  ! Setting content using code can expose users to cross-site scripting (XSS) attacks
+  
+
+Checked 15 files in 40ms. No fixes applied.
+Found 5 errors.
+Found 1 warning.
+check ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+
+npm error Lifecycle script `lint` failed with error:
+npm error code 1
+npm error path /Users/rajkoli/coral-sunflower/apps/frontend
+npm error workspace frontend@0.0.0
+npm error location /Users/rajkoli/coral-sunflower/apps/frontend
+npm error command failed
+npm error command sh -c biome check .

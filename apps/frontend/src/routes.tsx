@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router";
-import { Hello } from "./pages/login.tsx";
+import { Login } from "./pages/login.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -8,6 +8,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "login",
-    element: <Hello />,
+    Component: Login,
   },
 ]);

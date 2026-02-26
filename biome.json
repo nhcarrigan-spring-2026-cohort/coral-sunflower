@@ -4,6 +4,15 @@
     "indentStyle": "space",
     "lineWidth": 120
   },
+  "css": {
+    "parser": {
+      "cssModules": true,
+      "tailwindDirectives": true
+    },
+    "formatter": {
+      "enabled": true
+    }
+  },
   "files": {
     "ignoreUnknown": true
   },

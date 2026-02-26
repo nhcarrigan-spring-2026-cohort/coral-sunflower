@@ -23,7 +23,10 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+    "baseUrl": ".",
     "paths": {
+      "@/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"],
       "@supabase/*": ["./src/supabase/*"]
     }
   },

@@ -1,14 +1,21 @@
 import { supabase } from "@supabase/client.ts";
 import type { User } from "@supabase/supabase-js";
 import { useState } from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
+import { LoginForm } from "@/components/login-form.tsx";
+import { Button } from "@/components/ui/button.tsx";
+
+type formInputs = {
+  email: string;
+  password: string;
+};
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState("");
+  const { register, handleSubmit } = useForm<formInputs>();
 
-  const handleSignup = async () => {
+  const handleSignup: SubmitHandler<formInputs> = async ({ email, password }) => {
     const { data, error } = await supabase.auth.signUp({ email, password });
     if (error) {
       setError(error.message);
@@ -17,7 +24,7 @@ export const Login = () => {
     }
   };
 
-  const handleLogin = async () => {
+  const handleLogin: SubmitHandler<formInputs> = async ({ email, password }) => {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       setError(error.message);
@@ -32,34 +39,29 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h2>Login to Coral Sunflower</h2>
+    <div className={"flex h-screen justify-center items-center"}>
+      <div className={"w-full"}>
+        <h2 className={"bg-amber-50"}>Login to Coral Sunflower</h2>
         {error && <p>{error}</p>}
 
         {user ? (
           <div>
             <p>Logged in as {user.email}</p>
-            <button type={"button"} onClick={handleLogout}>
+            <Button type={"button"} onClick={handleLogout}>
               Logout
-            </button>
+            </Button>
           </div>
         ) : (
           <>
-            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <input {...register("email")} type="email" placeholder="Email" />
+            <input {...register("password")} type="password" placeholder="Password" />
             <div>
-              <button type={"button"} onClick={handleSignup}>
+              <Button type={"button"} onClick={handleSubmit(handleSignup)}>
                 Sign Up
-              </button>
-              <button type={"button"} onClick={handleLogin}>
+              </Button>
+              <Button type={"button"} onClick={handleSubmit(handleLogin)}>
                 Login
-              </button>
+              </Button>
             </div>
           </>
         )}

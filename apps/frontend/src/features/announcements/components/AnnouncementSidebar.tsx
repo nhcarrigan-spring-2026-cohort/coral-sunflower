@@ -9,7 +9,7 @@ interface AnnouncementSidebarProps {
 const AnnouncementSidebar: React.FC<AnnouncementSidebarProps> = ({ onAdd, isAdmin }) => {
   // We only want admins to see the creation tools, so we bail early if they aren't authorized.
   if (!isAdmin) {
-    return null;
+    return null; // Don't show the sidebar if the user isn't an admin
   }
 
   return (

@@ -2,11 +2,13 @@ import type { Announcement } from "@repo/types/announcement";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AnnouncementList, AnnouncementSidebar } from "./features/announcements";
+import { PlotTable } from "./features/plots";
 
 function App() {
   // Temporary state to show how the components work together
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [isAdmin, setIsAdmin] = useState(true); // Mock admin state
+  const [showPlots, setShowPlots] = useState(false); // Toggle between announcements and plots
 
   const handleAddAnnouncement = (title: string, content: string, expiry: string) => {
     // In a real app, this would be a fetch() call to POST /api/announcements
@@ -43,6 +45,24 @@ function App() {
           >
             Switch to {isAdmin ? "User View" : "Admin View"}
           </button>
+
+          {isAdmin && (
+            <button
+              type="button"
+              onClick={() => setShowPlots(!showPlots)}
+              style={{
+                padding: "8px 16px",
+                borderRadius: "20px",
+                border: "1px solid #3182ce",
+                backgroundColor: "transparent",
+                color: "#3182ce",
+                cursor: "pointer",
+                marginLeft: "10px",
+              }}
+            >
+              {showPlots ? "View Announcements" : "Manage Plots"}
+            </button>
+          )}
         </header>
 
         <Routes>
@@ -56,7 +76,7 @@ function App() {
                 </div>
                 <hr style={{ border: "none", borderBottom: "1px solid #e2e8f0", margin: "30px 0" }} />
 
-                <AnnouncementList announcements={announcements} />
+                {isAdmin && showPlots ? <PlotTable /> : <AnnouncementList announcements={announcements} />}
               </div>
             }
           />

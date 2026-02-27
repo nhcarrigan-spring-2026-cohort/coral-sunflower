@@ -15,24 +15,24 @@ const AnnouncementSidebar: React.FC<AnnouncementSidebarProps> = ({ onAdd, isAdmi
   return (
     <aside
       style={{
-        width: "350px",
-        padding: "20px",
-        borderLeft: "1px solid #ddd",
         backgroundColor: "#fdfdfd",
+        borderLeft: "1px solid #ddd",
         height: "calc(100vh - 40px)",
+        overflowY: "auto",
+        padding: "20px",
         position: "sticky",
         top: "20px",
-        overflowY: "auto",
+        width: "350px",
       }}
     >
-      <h2 style={{ fontSize: "1.2rem", marginBottom: "20px", color: "#2c3e50" }}>Admin Panel</h2>
-      <p style={{ fontSize: "0.9rem", color: "#666", marginBottom: "20px" }}>
+      <h2 style={{ color: "#2c3e50", fontSize: "1.2rem", marginBottom: "20px" }}>Admin Panel</h2>
+      <p style={{ color: "#666", fontSize: "0.9rem", marginBottom: "20px" }}>
         Use this form to post new community announcements.
       </p>
       <AnnouncementForm onAdd={onAdd} />
-      <div style={{ marginTop: "20px", padding: "15px", backgroundColor: "#eef2f7", borderRadius: "6px" }}>
+      <div style={{ backgroundColor: "#eef2f7", borderRadius: "6px", marginTop: "20px", padding: "15px" }}>
         <h4 style={{ fontSize: "0.9rem", margin: "0 0 10px 0" }}>Pro Tip</h4>
-        <p style={{ fontSize: "0.8rem", margin: 0, color: "#555" }}>
+        <p style={{ color: "#555", fontSize: "0.8rem", margin: 0 }}>
           Expired announcements are automatically hidden from the main dashboard to keep things tidy.
         </p>
       </div>

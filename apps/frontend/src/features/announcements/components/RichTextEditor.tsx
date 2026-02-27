@@ -35,33 +35,33 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange, placeh
   return (
     <div
       style={{
+        backgroundColor: "#fff",
         border: "1px solid #ccc",
         borderRadius: "4px",
         overflow: "hidden",
-        backgroundColor: "#fff",
       }}
     >
       {/* Toolbar */}
       <div
         style={{
-          padding: "5px",
+          backgroundColor: "#f9f9f9",
           borderBottom: "1px solid #eee",
           display: "flex",
           gap: "5px",
-          backgroundColor: "#f9f9f9",
+          padding: "5px",
         }}
       >
-        <button type="button" onClick={() => execCommand("bold")} style={buttonStyle} title="Bold">
+        <button onClick={() => execCommand("bold")} style={buttonStyle} title="Bold" type="button">
           <b>B</b>
         </button>
-        <button type="button" onClick={() => execCommand("italic")} style={buttonStyle} title="Italic">
+        <button onClick={() => execCommand("italic")} style={buttonStyle} title="Italic" type="button">
           <i>I</i>
         </button>
         <button
-          type="button"
           onClick={() => execCommand("insertUnorderedList")}
           style={buttonStyle}
           title="Bullet List"
+          type="button"
         >
           • List
         </button>
@@ -69,28 +69,28 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange, placeh
 
       {/* Editable Area */}
       <div
-        ref={editorRef}
         contentEditable
+        data-placeholder={placeholder}
         onInput={handleInput}
+        ref={editorRef}
         style={{
-          padding: "10px",
+          color: "#333",
           minHeight: "150px",
           outline: "none",
-          color: "#333",
+          padding: "10px",
         }}
-        data-placeholder={placeholder}
       />
     </div>
   );
 };
 
 const buttonStyle: React.CSSProperties = {
-  padding: "2px 8px",
-  cursor: "pointer",
+  backgroundColor: "#fff",
   border: "1px solid #ddd",
   borderRadius: "3px",
-  backgroundColor: "#fff",
+  cursor: "pointer",
   fontSize: "12px",
+  padding: "2px 8px",
 };
 
 export default RichTextEditor;

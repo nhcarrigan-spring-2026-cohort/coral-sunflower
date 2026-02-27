@@ -50,11 +50,11 @@ const AnnouncementForm: React.FC<AnnouncementFormProps> = ({ onAdd }) => {
   return (
     <div
       style={{
-        padding: "20px",
+        backgroundColor: "#fff",
         border: "1px solid #ccc",
         borderRadius: "8px",
         marginBottom: "20px",
-        backgroundColor: "#fff",
+        padding: "20px",
       }}
     >
       <h3>Create New Announcement</h3>
@@ -63,12 +63,12 @@ const AnnouncementForm: React.FC<AnnouncementFormProps> = ({ onAdd }) => {
       {error && (
         <div
           style={{
-            padding: "10px",
             backgroundColor: "#ffebee",
-            color: "#c62828",
-            borderRadius: "4px",
-            marginBottom: "10px",
             border: "1px solid #ef9a9a",
+            borderRadius: "4px",
+            color: "#c62828",
+            marginBottom: "10px",
+            padding: "10px",
           }}
         >
           {error}
@@ -77,55 +77,55 @@ const AnnouncementForm: React.FC<AnnouncementFormProps> = ({ onAdd }) => {
 
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="announcement-title" style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
+          <label htmlFor="announcement-title" style={{ display: "block", fontWeight: "bold", marginBottom: "5px" }}>
             Title
           </label>
           <input
             id="announcement-title"
-            type="text"
-            value={title}
             onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter announcement title"
             style={{
-              width: "100%",
-              padding: "8px",
-              boxSizing: "border-box",
               border: "1px solid #ccc",
               borderRadius: "4px",
+              boxSizing: "border-box",
+              padding: "8px",
+              width: "100%",
             }}
-            placeholder="Enter announcement title"
+            type="text"
+            value={title}
           />
         </div>
 
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="announcement-content" style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
+          <label htmlFor="announcement-content" style={{ display: "block", fontWeight: "bold", marginBottom: "5px" }}>
             Content (Rich Text)
           </label>
           <div id="announcement-content">
-            <RichTextEditor value={content} onChange={setContent} placeholder="Write your announcement here..." />
+            <RichTextEditor onChange={setContent} placeholder="Write your announcement here..." value={content} />
           </div>
         </div>
 
         <div style={{ marginBottom: "15px" }}>
-          <label style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}>
+          <label style={{ display: "block", fontWeight: "bold", marginBottom: "5px" }}>
             Expiration Date (Optional)
             <input
-              type="date"
-              value={expiry}
               onChange={(e) => setExpiry(e.target.value)}
               style={{
-                width: "100%",
-                padding: "8px",
+                border: "1px solid #ccc",
+                borderRadius: "4px",
                 boxSizing: "border-box",
                 display: "block",
                 marginTop: "5px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
+                padding: "8px",
+                width: "100%",
               }}
+              type="date"
+              value={expiry}
             />
           </label>
         </div>
 
-        <button type="submit" style={{ padding: "10px 20px", cursor: "pointer" }}>
+        <button style={{ cursor: "pointer", padding: "10px 20px" }} type="submit">
           Post Announcement
         </button>
       </form>

@@ -28,23 +28,23 @@ const AnnouncementList: React.FC<AnnouncementListProps> = ({ announcements }) =>
           <div
             key={item.id}
             style={{
-              padding: "15px",
+              backgroundColor: "#fafafa",
               border: "1px solid #eee",
               borderRadius: "6px",
-              backgroundColor: "#fafafa",
               color: "#333",
+              padding: "15px",
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ alignItems: "center", display: "flex", justifyContent: "space-between" }}>
               <h4 style={{ margin: "0 0 10px 0" }}>{item.title}</h4>
               {item.expirationDate && (
-                <span style={{ fontSize: "0.8em", color: "#888" }}>
+                <span style={{ color: "#888", fontSize: "0.8em" }}>
                   Expires: {new Date(item.expirationDate).toLocaleDateString()}
                 </span>
               )}
             </div>
             {/* biome-ignore lint: rendering rich text from admin editor */}
-            <div style={{ margin: 0 }} dangerouslySetInnerHTML={{ __html: item.content }} />
+            <div dangerouslySetInnerHTML={{ __html: item.content }} style={{ margin: 0 }} />
           </div>
         ))}
       </div>

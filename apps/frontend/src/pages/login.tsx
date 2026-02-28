@@ -14,7 +14,7 @@ export const Login = () => {
         console.log({ error });
       } else {
         console.log("current user:", data.user);
-        navigate("/");
+        navigate("/"); // TODO: Navigate to dashboard instead.
       }
     };
 
@@ -26,7 +26,7 @@ export const Login = () => {
     if (error) {
       console.log({ error });
     } else {
-      navigate("/");
+      navigate("/"); // TODO: Navigate to dashboard instead.
     }
   };
 
@@ -36,7 +36,7 @@ export const Login = () => {
     if (error) {
       console.log({ error });
     } else {
-      navigate("/");
+      navigate("/"); // TODO: Navigate to dashboard instead.
     }
   };
 

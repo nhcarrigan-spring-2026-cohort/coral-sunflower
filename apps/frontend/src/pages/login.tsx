@@ -1,70 +1,53 @@
 import { supabase } from "@supabase/client.ts";
-import type { User } from "@supabase/supabase-js";
-import { useState } from "react";
-import { type SubmitHandler, useForm } from "react-hook-form";
-import { LoginForm } from "@/components/login-form.tsx";
-import { Button } from "@/components/ui/button.tsx";
-
-type formInputs = {
-  email: string;
-  password: string;
-};
+import { useEffect } from "react";
+import type { SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { type formData, LoginForm } from "@/components/login-form.tsx";
 
 export const Login = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm<formInputs>();
+  const navigate = useNavigate();
 
-  const handleSignup: SubmitHandler<formInputs> = async ({ email, password }) => {
-    const { data, error } = await supabase.auth.signUp({ email, password });
+  useEffect(() => {
+    const fetchSession = async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (error) {
+        console.log({ error });
+      } else {
+        console.log("current user:", data.user);
+        navigate("/");
+      }
+    };
+
+    fetchSession();
+  }, [navigate]);
+
+  const handleSignup: SubmitHandler<formData> = async ({ email, password }) => {
+    const { error } = await supabase.auth.signUp({ email, password });
     if (error) {
-      setError(error.message);
+      console.log({ error });
     } else {
-      setUser(data.user);
+      navigate("/");
     }
   };
 
-  const handleLogin: SubmitHandler<formInputs> = async ({ email, password }) => {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  const handleLogin: SubmitHandler<formData> = async ({ email, password }) => {
+    console.log("Login Clicked");
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
-      setError(error.message);
+      console.log({ error });
     } else {
-      setUser(data.user);
+      navigate("/");
     }
-  };
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
   };
 
   return (
     <div className={"flex h-screen justify-center items-center"}>
       <div className={"w-full"}>
-        <h2 className={"bg-amber-50"}>Login to Coral Sunflower</h2>
-        {error && <p>{error}</p>}
-
-        {user ? (
-          <div>
-            <p>Logged in as {user.email}</p>
-            <Button type={"button"} onClick={handleLogout}>
-              Logout
-            </Button>
-          </div>
-        ) : (
-          <>
-            <input {...register("email")} type="email" placeholder="Email" />
-            <input {...register("password")} type="password" placeholder="Password" />
-            <div>
-              <Button type={"button"} onClick={handleSubmit(handleSignup)}>
-                Sign Up
-              </Button>
-              <Button type={"button"} onClick={handleSubmit(handleLogin)}>
-                Login
-              </Button>
-            </div>
-          </>
-        )}
+        <LoginForm
+          handleSignUp={handleSignup}
+          handleLogin={handleLogin}
+          className={"mx-auto max-w-3xl sm:max-md:max-w-xl"}
+        />
       </div>
     </div>
   );

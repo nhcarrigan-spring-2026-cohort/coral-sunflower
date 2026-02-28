@@ -1,6 +1,7 @@
 import { createBrowserRouter, Outlet } from "react-router";
 import { ProtectedRoute } from "@/components/protected-route.tsx";
 import { Login } from "./pages/login.tsx";
+import MyPlot from "./pages/MyPlot/MyPlotPage";
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +13,12 @@ export const router = createBrowserRouter([
     path: "login",
   },
   {
-    children: [],
+    children: [
+      {
+        path: "my-plot",
+        element: <MyPlot />
+      },
+    ],
     element: (
       <ProtectedRoute>
         <div>Dashboard</div>

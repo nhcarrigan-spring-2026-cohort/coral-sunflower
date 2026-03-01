@@ -18,7 +18,6 @@ export const Login = () => {
   };
 
   const handleLogin: SubmitHandler<formData> = async ({ email, password }) => {
-    console.log("Login Clicked");
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       console.log({ error });

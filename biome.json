@@ -1,25 +1,37 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "formatter": {
-    "indentStyle": "space",
-    "lineWidth": 120
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedAttributes": "on",
+        "useSortedKeys": "on",
+        "useSortedProperties": "on"
+      }
+    },
+    "enabled": true,
+    "includes": ["**", "!**/package*.json"]
   },
   "css": {
+    "formatter": {
+      "enabled": true
+    },
     "parser": {
       "cssModules": true,
       "tailwindDirectives": true
-    },
-    "formatter": {
-      "enabled": true
     }
   },
   "files": {
     "ignoreUnknown": true
   },
+  "formatter": {
+    "indentStyle": "space",
+    "lineWidth": 120
+  },
   "vcs": {
-    "enabled": true,
     "clientKind": "git",
-    "useIgnoreFile": true,
-    "defaultBranch": "main"
+    "defaultBranch": "main",
+    "enabled": true,
+    "useIgnoreFile": true
   }
 }

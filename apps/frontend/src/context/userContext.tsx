@@ -1,7 +1,7 @@
 import { supabase } from "@supabase/client.ts";
 import type { User } from "@supabase/supabase-js";
 import type React from "react";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 type UserContext = {
   isLoading: boolean;
@@ -19,14 +19,14 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       const { data, error } = await supabase.auth.getUser();
       if (error) {
         console.log({ error });
-      } else if (data.user) {
+      } else {
         setUser(data.user);
       }
       setIsLoading(false);
     };
     fetchSession();
 
-    const subscription = supabase.auth.onAuthStateChange((a, session) => {
+    const subscription = supabase.auth.onAuthStateChange((_, session) => {
       setUser(session?.user ?? null);
       setIsLoading(false);
     });
@@ -36,5 +36,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
-  return <UserContext.Provider value={{ isLoading, user }}>{children}</UserContext.Provider>;
+  const contextValue = useMemo(() => ({ isLoading, user }), [isLoading, user]);
+
+  return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
 };

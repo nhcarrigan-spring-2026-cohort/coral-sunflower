@@ -1,32 +1,19 @@
 import { supabase } from "@supabase/client.ts";
-import { useEffect } from "react";
+import { use, useContext } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { type formData, LoginForm } from "@/components/login-form.tsx";
+import { UserContext } from "@/context/userContext.tsx";
 
 export const Login = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchSession = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (error) {
-        console.log({ error });
-      } else {
-        console.log("current user:", data.user);
-        navigate("/"); // TODO: Navigate to dashboard instead.
-      }
-    };
-
-    fetchSession();
-  }, [navigate]);
 
   const handleSignup: SubmitHandler<formData> = async ({ email, password }) => {
     const { error } = await supabase.auth.signUp({ email, password });
     if (error) {
       console.log({ error });
     } else {
-      navigate("/"); // TODO: Navigate to dashboard instead.
+      navigate("/dashboard");
     }
   };
 
@@ -36,7 +23,7 @@ export const Login = () => {
     if (error) {
       console.log({ error });
     } else {
-      navigate("/"); // TODO: Navigate to dashboard instead.
+      navigate("/dashboard");
     }
   };
 
@@ -44,9 +31,9 @@ export const Login = () => {
     <div className={"flex h-screen justify-center items-center"}>
       <div className={"w-full"}>
         <LoginForm
-          handleSignUp={handleSignup}
-          handleLogin={handleLogin}
           className={"mx-auto max-w-3xl sm:max-md:max-w-xl"}
+          handleLogin={handleLogin}
+          handleSignUp={handleSignup}
         />
       </div>
     </div>

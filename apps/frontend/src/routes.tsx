@@ -1,6 +1,4 @@
-import path from "node:path";
 import { createBrowserRouter, Outlet } from "react-router";
-import { ComponentExample } from "@/components/component-example.tsx";
 import { ProtectedRoute } from "@/components/protected-route.tsx";
 import { Login } from "./pages/login.tsx";
 

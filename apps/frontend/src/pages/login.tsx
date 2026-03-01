@@ -1,9 +1,7 @@
 import { supabase } from "@supabase/client.ts";
-import { use, useContext } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { type formData, LoginForm } from "@/components/login-form.tsx";
-import { UserContext } from "@/context/userContext.tsx";
 
 export const Login = () => {
   const navigate = useNavigate();

@@ -4,6 +4,3 @@ export interface Announcement {
   content: string; // Using string for date to make it easy to pass via JSON
   expirationDate: string | null;
 }
-
-export * from "./plot.js";
-export * from "./user.js";

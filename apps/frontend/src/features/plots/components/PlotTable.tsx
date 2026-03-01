@@ -1,4 +1,5 @@
-import type { Plot, User } from "@repo/types/announcement";
+import type { Plot } from "@repo/types/plot";
+import type { User } from "@repo/types/user";
 import type React from "react";
 import { useState } from "react";
 

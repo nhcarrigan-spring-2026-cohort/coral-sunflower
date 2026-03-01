@@ -8,8 +8,8 @@ type ResponsibilityItemProps = {
 };
 
 export default function ResponsibilityItem({ id, responsibility, initialCompleted }: ResponsibilityItemProps) {
-  const [isCompleted, setIsCompleted] = useState(false);
-  const [isLoading, setIsLoading] = useState(initialCompleted);
+  const [isCompleted, setIsCompleted] = useState(initialCompleted);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleToggle = async () => {
     if (isLoading) return;
@@ -20,11 +20,16 @@ export default function ResponsibilityItem({ id, responsibility, initialComplete
     setIsLoading(true);
 
     try {
-      await fetch(`/api/responsibilities/${id}`, {
-        method: "PATCH",
-        body: JSON.stringify({ status: !previousState ? "completed" : "pending" }),
-      });
-      console.log(`PATCH request sent for ID ${id} to state ${!previousState}`);
+      // FUTURE API CALL: Uncomment when backend is ready
+
+      // await fetch(`/api/responsibilities/${id}`, {
+      //   method: "PATCH",
+      //   body: JSON.stringify({ status: !previousState ? "completed" : "pending" }),
+      // });
+
+      // MOCK API CALL: Simulate a 500ms delay to test the loading state
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      console.log(`Mock PATCH request sent for ID ${id} to state ${!previousState}`);
     } catch (error) {
       console.error("Failed to update status", error);
       setIsCompleted(previousState);

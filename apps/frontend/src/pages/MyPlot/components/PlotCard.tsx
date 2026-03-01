@@ -1,4 +1,4 @@
-import type { PlotData } from "../MyPlotPage";
+import type { PlotData } from "../../../services/plotServices";
 import { LeaseInfo } from "./LeaseInfo";
 import { PlotCardHeader } from "./PlotCardHeader";
 import { ResponsibilityList } from "./ResponsibilityList";

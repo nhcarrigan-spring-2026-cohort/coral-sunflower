@@ -2,8 +2,8 @@ import type { Announcement } from "@repo/types/announcement";
 import { useState } from "react";
 import AnnouncementList from "@/components/announcements/AnnouncementList";
 import AnnouncementSidebar from "@/components/announcements/AnnouncementSidebar";
+import PlotTable from "@/components/plots/PlotTable.tsx";
 import { Button } from "@/components/ui/button";
-import { PlotTable } from "../features/plots";
 
 export const Dashboard = () => {
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);

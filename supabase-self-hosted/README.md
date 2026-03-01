@@ -13,7 +13,7 @@ The guide covers:
 - Accessing services
 - Updating your instance
 
-## What's Included
+## What’s Included
 
 This Docker Compose configuration includes the following services:
 
@@ -29,7 +29,7 @@ This Docker Compose configuration includes the following services:
 - **[Edge Runtime](https://github.com/supabase/edge-runtime)** - Web server based on Deno runtime for running JavaScript, TypeScript, and WASM services
 - **[Logflare](https://github.com/Logflare/logflare)** - Log management and event analytics platform
 - **[Vector](https://github.com/vectordotdev/vector)** - High-performance observability data pipeline for logs
-- **[Supavisor](https://github.com/supabase/supavisor)** - Supabase's Postgres connection pooler
+- **[Supavisor](https://github.com/supabase/supavisor)** - Supabase’s Postgres connection pooler
 
 ## Documentation
 
@@ -64,7 +64,7 @@ Self-hosted Supabase is community-supported. Get help and connect with other use
 
 Share your self-hosting experience:
 
-- [GitHub Discussions](https://github.com/orgs/supabase/discussions/39820) - "Self-hosting: What's working (and what's not)?"
+- [GitHub Discussions](https://github.com/orgs/supabase/discussions/39820) - “Self-hosting: What’s working (and what’s not)?”
 
 ## Important Notes
 

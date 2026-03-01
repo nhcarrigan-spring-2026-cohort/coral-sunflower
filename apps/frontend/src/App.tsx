@@ -1,11 +1,14 @@
-import { Route, Routes } from "react-router-dom";
+import { StrictMode } from "react";
+import { RouterProvider } from "react-router/dom";
+import { UserProvider } from "@/context/userContext.tsx";
+import { router } from "./routes.tsx";
 
-function App() {
+export const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<h1>Community Garden</h1>} />
-    </Routes>
+    <StrictMode>
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </StrictMode>
   );
-}
-
-export default App;
+};

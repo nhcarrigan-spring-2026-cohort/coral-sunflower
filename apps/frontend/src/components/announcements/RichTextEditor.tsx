@@ -27,7 +27,6 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange, placeh
   };
 
   const execCommand = (command: string, value: string | undefined = undefined) => {
-    // biome-ignore lint: Using simple execCommand for basic editor
     document.execCommand(command, false, value);
     handleInput();
   };

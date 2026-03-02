@@ -1,6 +1,6 @@
 export interface Announcement {
-  id: string;
+  id: number;
   title: string;
   content: string; // Using string for date to make it easy to pass via JSON
-  expirationDate: string | null;
+  expiry: string | null;
 }

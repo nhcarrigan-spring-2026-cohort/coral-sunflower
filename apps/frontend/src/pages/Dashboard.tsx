@@ -1,29 +1,60 @@
 import type { Announcement } from "@repo/types/announcement";
-import { useState } from "react";
+import { supabase } from "@supabase/client.ts";
+import { useContext, useEffect, useState } from "react";
 import AnnouncementList from "@/components/announcements/AnnouncementList";
 import AnnouncementSidebar from "@/components/announcements/AnnouncementSidebar";
 import PlotTable from "@/components/plots/PlotTable.tsx";
 import { Button } from "@/components/ui/button";
+import { UserContext } from "@/context/userContext.tsx";
+
+const fetchAnnouncements = () => supabase.from("announcement").select("id, title, content, expiry");
 
 export const Dashboard = () => {
+  const { isLoading, user } = useContext(UserContext);
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [isAdmin, setIsAdmin] = useState(true);
   const [showPlots, setShowPlots] = useState(false);
 
-  const handleAddAnnouncement = (title: string, content: string, expiry: string) => {
-    console.log("Sending to API: POST /api/announcements", {
-      content,
-      expiry,
-      title,
-    });
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
 
-    const newAnnouncement: Announcement = {
-      content,
-      expirationDate: expiry || null,
-      id: Math.random().toString(36).substring(2, 11),
-      title,
+    const fetchData = async () => {
+      const { data, error } = await fetchAnnouncements();
+
+      if (!data || error) {
+        console.log({ error });
+        return;
+      }
+
+      setAnnouncements(data);
     };
-    setAnnouncements([newAnnouncement, ...announcements]);
+
+    fetchData();
+  }, [isLoading]);
+
+  const handleAddAnnouncement = async (title: string, content: string, expiry: string) => {
+    if (!user) {
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("announcement")
+      .upsert({
+        author_uid: user.id,
+        content,
+        expiry: new Date(expiry).toISOString(),
+        title,
+      })
+      .select("id, title, content, expiry");
+
+    if (error) {
+      console.log({ error });
+      return;
+    }
+
+    setAnnouncements([...announcements, ...data]);
   };
 
   return (

@@ -8,8 +8,8 @@ interface AnnouncementListProps {
 const AnnouncementList: React.FC<AnnouncementListProps> = ({ announcements }) => {
   // Filter out expired announcements
   const activeAnnouncements = announcements.filter((item) => {
-    if (!item.expirationDate) return true;
-    const expiryDate = new Date(item.expirationDate);
+    if (!item.expiry) return true;
+    const expiryDate = new Date(item.expiry);
     const today = new Date();
     // Reset time to start of day for clean comparison
     today.setHours(0, 0, 0, 0);
@@ -37,9 +37,9 @@ const AnnouncementList: React.FC<AnnouncementListProps> = ({ announcements }) =>
           >
             <div style={{ alignItems: "center", display: "flex", justifyContent: "space-between" }}>
               <h4 style={{ margin: "0 0 10px 0" }}>{item.title}</h4>
-              {item.expirationDate && (
+              {item.expiry && (
                 <span style={{ color: "#888", fontSize: "0.8em" }}>
-                  Expires: {new Date(item.expirationDate).toLocaleDateString()}
+                  Expires: {new Date(item.expiry).toLocaleDateString()}
                 </span>
               )}
             </div>

@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router";
 import { ProtectedRoute } from "@/components/protected-route.tsx";
 import { Dashboard } from "./pages/Dashboard.tsx";
 import { Login } from "./pages/login.tsx";
+import MyPlot from "./pages/MyPlot";
 
 export const router = createBrowserRouter([
   {
@@ -19,5 +20,13 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     path: "dashboard",
+  },
+  {
+    element: (
+      <ProtectedRoute>
+        <MyPlot />
+      </ProtectedRoute>
+    ),
+    path: "my-plot",
   },
 ]);

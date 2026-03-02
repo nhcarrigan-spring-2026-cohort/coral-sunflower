@@ -44,3 +44,4 @@ coverage/
 *.log
 .eslintcache
 supabase/.branches/
+**/.temp

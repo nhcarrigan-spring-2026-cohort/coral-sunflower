@@ -1,10 +1,11 @@
-import { createBrowserRouter, Outlet } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import { ProtectedRoute } from "@/components/protected-route.tsx";
+import { Dashboard } from "./pages/Dashboard.tsx";
 import { Login } from "./pages/login.tsx";
 
 export const router = createBrowserRouter([
   {
-    element: <div>Hello World</div>,
+    element: <Navigate to="/dashboard" />,
     path: "/",
   },
   {
@@ -12,11 +13,9 @@ export const router = createBrowserRouter([
     path: "login",
   },
   {
-    children: [],
     element: (
       <ProtectedRoute>
-        <div>Dashboard</div>
-        <Outlet />
+        <Dashboard />
       </ProtectedRoute>
     ),
     path: "dashboard",
